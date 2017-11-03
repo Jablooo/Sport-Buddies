@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Avatar data:</strong>
-  <%= @profile.avatar_data %>
+  <%= image_tag @profile.avatar_url, :class => 'profile_avatar' %>
 </p>
 
 <p>
@@ -54,6 +53,9 @@
   <strong>Longitude:</strong>
   <%= @profile.longitude %>
 </p>
+<% if @profile.user == current_user %>
+  <%= link_to 'Edit Profile', edit_profiles_path, class: "btn btn-outline-dark" %>
+<% end %>
 
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', profiles_path %>
+<br>
+<%= link_to 'Back', root_path %>

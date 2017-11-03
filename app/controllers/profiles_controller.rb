@@ -29,7 +29,7 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
+        format.html { redirect_to profiles_path, notice: 'Profile was successfully created.' }
         format.json { render :show, status: :created, location: @profile }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class ProfilesController < ApplicationController
   def update
     respond_to do |format|
       if @profile.update(profile_params)
-        format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
+        format.html { redirect_to profiles_path, notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @profile }
       else
         format.html { render :edit }
@@ -65,11 +65,28 @@ class ProfilesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
-      @profile = Profile.find(params[:id])
+      @profile = if params[:id]
+                 Profile.find_by!(user_id: params[:id])
+               else
+                 Profile.find_by(user: current_user)
+               end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:user_id, :avatar_data, :first_name, :last_name, :sex, :DOB, :street, :postcode, :state, :country, :latitude, :longitude)
+      params.require(:profile).permit(
+        :user_id,
+        :avatar,
+        :first_name,
+        :last_name,
+        :sex,
+        :DOB,
+        :street,
+        :postcode,
+        :state,
+        :country,
+        :latitude,
+        :longitude
+      )
     end
 end

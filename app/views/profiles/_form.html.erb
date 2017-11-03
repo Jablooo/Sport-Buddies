@@ -1,4 +1,4 @@
-<%= form_with(model: profile, local: true) do |form| %>
+<%= form_with(model: profile, url:profiles_path, local: true) do |form| %>
   <% if profile.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :avatar_data %>
-    <%= form.file_field :avatar_data, id: :profile_avatar_data %>
+    <%= form.label :avatar %>
+    <%= form.file_field :avatar, id: :profile_avatar_data, :angle=>"exif", :gravity=>"auto", :height=>500, :width=>500, :crop=>"fill" %>
   </div>
 
   <div class="field">
