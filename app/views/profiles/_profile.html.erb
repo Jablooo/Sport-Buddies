@@ -1,0 +1,11 @@
+<!-- Profile thumbnail for general use  -->
+
+<% @profiles.each do |profile| %>
+  <div class="row">
+    <%= image_tag profile.avatar_url, :class => 'profile_avatar'  %>
+    <%= profile.first_name %>
+    <%= profile.last_name %>
+    <%= profile.sex %>
+    <%= profile.postcode %>
+  </div>
+<% end %>
