@@ -3,7 +3,20 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .profile_avatar {
-  height: 130px;
-  width: 130px;
+  height: 80px;
+  width: 80px;
   border-radius: 50%;
+  margin-left: 20px;
+}
+
+.profile_info {
+  font-weight: bold;
+  margin-left: 20px;
+
+}
+
+.profile_row {
+  margin-top: 3vh;
+  text-align: left;
+  align-items: center;
 }
