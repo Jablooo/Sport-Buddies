@@ -19,3 +19,59 @@
  * {
    box-sizing: border-box;
  }
+
+// profiles
+
+.profile_avatar {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  margin-left: 20px;
+}
+
+.profile_info {
+  font-weight: bold;
+  margin-left: 20px;
+
+}
+
+.profile_row {
+  margin-top: 3vh;
+  text-align: left;
+  align-items: center;
+}
+// ________________________
+
+
+// items
+.copy_card {
+  padding-top: 10%;
+  border: none;
+}
+
+.card_text {
+  margin-top: 10px;
+}
+
+.btn {
+  margin-top: 10px;
+}
+
+.card_avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+}
+
+.solo_card {
+  padding: 1% 1% 1%;
+}
+
+.seller_row {
+  margin: 10px;
+}
+
+.btn-outline-dark {
+  margin-bottom: 20px;
+}
+// ________________________
