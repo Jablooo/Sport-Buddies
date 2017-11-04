@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<!-- <p>
+  <strong>Renting price:</strong>
+  <%= @item.renting_price %>
+</p> -->
+
+<div class="container justify-content-center">
+  <div class="row">
+    <div class="card mx-auto solo_card col-12 col-sm-5">
+      <img class="card-img-top feed_photo" src="<%= @item.photo_url(:angle=>"exif", :gravity=>"auto", :height=>500, :width=>500, :crop=>"fill") %>">
+
+      <div class="seller_row">
+        <%= image_tag @item.user.profile.avatar_url, :class => 'card_avatar' %>
+        <!-- Sold by <%#= @item.user.profile.first_name %> -->
+      </div>
+
+    </div>
+    <div class="card copy_card mx-auto col-12 col-sm-5">
+        <div class="card-body">
+          <div class="text_box">
+            <p class="card-text"><span class="item_name"><%= @item.name %></span></p>
+            <p class="card-text"><span class="item_name"><%=number_to_currency(@item.selling_price, unit: "$") %></span></p>
+            <p class="card-text"><span class="item_desc"><%= @item.description %></span></p>
+            <p class="card-text"><span class="item_cond"><%= @item.quantity %></span></p>
+          </div>
+          <% if @item.user == current_user %>
+              <%= link_to 'Edit Item', edit_item_path(@item), class: "btn btn-outline-dark" %>
+          <% else %>
+
+          <!-- THIS Link isn't attached to anything -->
+              <%= link_to 'Buy', new_item_charge_path(@item), class: "btn btn-outline-dark" %>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>
+<%= link_to 'Back', items_path %>
