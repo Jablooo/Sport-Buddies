@@ -55,6 +55,47 @@ $col9 : #0b5351;
 }
 
 // home page
+.home_feed {
+  background-color: $col2;
+  border-left: 1px solid $col1;
+  border-right: 1px solid $col1;
+  padding-bottom: 20px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  margin-bottom: 20px;
+}
+.heading {
+  text-align: center;
+  margin-top: -20px;
+  margin-bottom: 40px;
+  color: $col2;
+}
+
+.tabs {
+  text-align: center;
+  color: $col1;
+}
+
+.buddies {
+  font-size: 18px;
+  padding: 5px 0;
+  margin-bottom: 0;
+  background-color: $col2;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border: 1px solid $col1;
+  border-bottom: 0;
+}
+
+.equipment {
+  font-size: 18px;
+  padding: 5px 0;
+  margin-bottom: 0;
+  background-color: $col3;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border: 1px solid $col1;
+}
 
 // log in page
 .card_field {
@@ -101,6 +142,10 @@ $col9 : #0b5351;
 .profile_info {
   font-weight: bold;
   margin-left: 20px;
+}
+
+.profile_info {
+  color: $col1;
 }
 
 .login_text select{

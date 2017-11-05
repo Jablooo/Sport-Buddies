@@ -2,6 +2,7 @@ require "cloudinary"
 require "shrine/storage/cloudinary"
 
 Cloudinary.config(
+
 )
 
 Shrine.storages = {
