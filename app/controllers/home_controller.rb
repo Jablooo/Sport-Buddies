@@ -35,7 +35,8 @@ class HomeController < ApplicationController
       :description,
       :selling_price,
       :quantity,
-      :user_id
+      :user_id,
+      :category
     )
   end
 end
