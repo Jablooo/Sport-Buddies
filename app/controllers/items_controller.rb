@@ -78,7 +78,8 @@ class ItemsController < ApplicationController
         :description,
         :selling_price,
         :renting_price,
-        :quantity
+        :quantity,
+        :category
       )
     end
 end
