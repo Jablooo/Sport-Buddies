@@ -44,6 +44,22 @@
         <%= form.select :state, ['ACT', 'NSW', 'NT', 'QLD', 'SA', 'TAS', 'VIC', 'WA'], id: :profile_state, class: 'col-6' %>
       </div>
 
+      <div class="form_row">
+        <label for="sport[]">Sports</label><br>
+        <% @sports.all.each do |sport| %>
+          <br><%= check_box_tag 'name[]', sport,
+                  (params[:name] || {}).include?(sport) %>
+        <% end %>
+      </div>
+
+      <!--
+        <label for="sport_play[]">Sports Palyed:</label>
+        <% [ 'tennis', 'football', 'swimming' ].each do |sport| %>
+          <br><%= check_box_tag 'sport_play[]', sport,
+                  (params[:sport_play] || {}).include?(sport) %>
+          <%= sport.humanize %>
+        <% end %> -->
+
       <div class="actions">
         <%= form.submit %>
       </div>

@@ -3,5 +3,6 @@ class Profile < ApplicationRecord
   has_many :skills
   has_many :sports, through: :skills
 
+
   include ImageUploader[:avatar]
 end
