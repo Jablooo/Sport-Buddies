@@ -14,11 +14,63 @@
  *= require_self
  */
 
- @import "bootstrap";
+@import "bootstrap";
 
- * {
-   box-sizing: border-box;
- }
+$col1 : #2b2d42;
+$col2 : #8d99ae;
+$col3 : #c3f73a;
+// f8f32b
+
+$col4 : #020202;
+$col5 : #c7f97d;
+$col6 : #001c55;
+
+$col7 : #041b15;
+$col8 : #c3f73a;
+$col9 : #0b5351;
+
+* {
+ box-sizing: border-box;
+}
+
+.main_bg {
+  // col1,col7,col4
+  background-color: $col1;
+}
+
+.secondary_bg {
+  // col2,col8,col6
+  background-color: $col2 !important;
+}
+
+// log in page
+.card_field {
+  text-align: center;
+  color: black;
+}
+
+::-webkit-input-placeholder {
+   text-align: center;
+}
+
+.devise-card {
+  margin-top: 150px;
+}
+
+.login_text a {
+  // col3,col9,col5
+  color: $col3 !important;
+}
+
+.login_text {
+  // col3,col9,col5
+  color: $col3 !important;
+}
+
+.login_text input{
+  // col3,col9,col5
+  color: $col3 !important;
+}
 
 // profiles
 
