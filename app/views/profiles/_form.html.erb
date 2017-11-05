@@ -47,8 +47,8 @@
       <div class="form_row">
         <label for="sport[]">Sports</label><br>
         <% @sports.all.each do |sport| %>
-          <br><%= check_box_tag 'name[]', sport,
-                  (params[:name] || {}).include?(sport) %>
+          <br><%= check_box_tag 'sport[]', sport,
+                  (params[:sport] || {}).include?(sport) %>
         <% end %>
       </div>
 
@@ -57,7 +57,7 @@
         <% [ 'tennis', 'football', 'swimming' ].each do |sport| %>
           <br><%= check_box_tag 'sport_play[]', sport,
                   (params[:sport_play] || {}).include?(sport) %>
-          <%= sport.humanize %>
+
         <% end %> -->
 
       <div class="actions">

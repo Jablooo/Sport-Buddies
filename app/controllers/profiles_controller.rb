@@ -44,7 +44,13 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /profiles/1.json
   def update
     respond_to do |format|
-      if @profile.update(profile_params)
+      if performing_follow?
+        @profile.user.toggle_followed_by(current_user)
+        # the next two lines are all about the redirecting or the 'resheshing' of a page so that you can see the result of follow and unfollow without having to refresh.
+        format.html { redirect_to @profile.user }
+        format.json { render :show, status: :ok, location: @profile }
+        
+      elsif @profile.update(profile_params)
         format.html { redirect_to profiles_path, notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @profile }
       else
@@ -65,35 +71,40 @@ class ProfilesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_profile
-      @profile = if params[:id]
-                 Profile.find_by!(user_id: params[:id])
-               else
-                 Profile.find_by(user: current_user)
-               end
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_profile
+    @profile = if params[:id]
+               Profile.find_by!(user_id: params[:id])
+             else
+               Profile.find_by(user: current_user)
+             end
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def profile_params
-      params.require(:profile).permit(
-        :user_id,
-        :avatar,
-        :first_name,
-        :last_name,
-        :sex,
-        :DOB,
-        :street,
-        :postcode,
-        :state,
-        :country,
-        :latitude,
-        :longitude
-      )
-    end
-    def sport_params
-      params.require(:sport).permit(
-        :name,
-      )
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def profile_params
+    params.require(:profile).permit(
+      :user_id,
+      :avatar,
+      :first_name,
+      :last_name,
+      :sex,
+      :DOB,
+      :street,
+      :postcode,
+      :state,
+      :country,
+      :latitude,
+      :longitude
+    )
+  end
+
+  def sport_params
+    params.require(:sport).permit(
+      :name,
+    )
+  end
+
+  def performing_follow?
+  params.require(:user)[:toggle_follow].present?
+  end
 end

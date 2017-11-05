@@ -3,12 +3,21 @@
     <div class= "col-12">
       <%= image_tag @profile.avatar_url, :class => 'buddy_avatar' %>
     </div>
-    <div class="col-12 icons">
-      <%= link_to image_tag("add_friend.png"), edit_profiles_path, class: "btn" %>
-      <%= link_to image_tag("email.png"), edit_profiles_path, class: "btn" %>
+    <div class="col-3 icons">
       <% if @profile.user == current_user %>
         <%= link_to image_tag("edit_button.png"), edit_profiles_path, class: "btn" %>
+      <% else %>
+        <%= form_with(model: @profile.user, method: :patch) do |form| %>
+        <!-- the line below is memorising the value true associated with the toggle_follow method, turning it from true to false or flase to true-->
+          <%= form.hidden_field :toggle_follow, value: true %>
+
+          <%= form.button @profile.user.followed_by?(current_user) ? image_tag('unfriend.png') : image_tag('add_friend.png'),
+            class: 'btn btn-primary btn-block col-12' %>
+        <% end %>
       <% end %>
+      <%#= link_to image_tag("add_friend.png"), edit_profiles_path, class: "btn" %>
+      <%#= link_to image_tag("email.png"), edit_profiles_path, class: "btn" %>
+
     </div>
 
     <div class="col-12">
