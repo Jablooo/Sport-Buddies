@@ -16,6 +16,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/new
   def new
     @profile = Profile.new
+    @sports = Sport.all
   end
 
   # GET /profiles/1/edit
@@ -88,6 +89,11 @@ class ProfilesController < ApplicationController
         :country,
         :latitude,
         :longitude
+      )
+    end
+    def sport_params
+      params.require(:sport).permit(
+        :name,
       )
     end
 end
