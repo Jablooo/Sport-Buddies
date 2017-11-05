@@ -4,5 +4,13 @@
   <h1>Sport Buddies</h1>
 </div>
 
-<%= render 'items/items' %>
-<%#= render 'profiles/profile' %>
+<div class="container">
+  <div class="row tabs">
+    <h4 class="buddies col-6">Buddies</h4>
+    <h4 class="equipment col-6">Equipment</h4>
+  </div>
+  <div class="row home_feed">
+    <%#= render 'items/items' %>
+    <%= render 'profiles/profile' %>
+  </div>
+</div>
