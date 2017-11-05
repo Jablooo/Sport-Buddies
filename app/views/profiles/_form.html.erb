@@ -1,55 +1,52 @@
-<%= form_with(model: profile, url:profiles_path, local: true) do |form| %>
-  <% if profile.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+<div class="card mx-auto col-10 secondary_bg">
+  <div class="card-body card_field">
+    <%= form_with(model: profile, url:profiles_path, local: true) do |form| %>
+      <% if profile.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
 
-      <ul>
-      <% profile.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% profile.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :avatar %>
-    <%= form.file_field :avatar, id: :profile_avatar_data, :angle=>"exif", :gravity=>"auto", :height=>500, :width=>500, :crop=>"fill" %>
-  </div>
+      <div class="field">
+        <%= form.label 'Avatar:', class: 'col-5' %>
+        <%= form.file_field :avatar, id: :profile_avatar_data, class: 'col-5 file_field', :angle=>"exif", :gravity=>"auto", :height=>500, :width=>500, :crop=>"fill" %>
+      </div>
 
-  <div class="field">
-    <%= form.text_field :first_name, placeholder: "first name", id: :profile_first_name %>
-  </div>
+      <div class="field">
+        <%= form.select :sex, ['M', 'F'], id: :profile_sex %>
+      </div>
 
-  <div class="field">
-    <%= form.text_field :last_name, placeholder: "last name", id: :profile_last_name %>
-  </div>
+      <div class="field">
+        <%= form.text_field :first_name, placeholder: "first name", id: :profile_first_name %>
+      </div>
 
-  <div class="field">
-    <%= form.label :sex %>
-    <%= form.select :sex, ['Male', 'Female'], id: :profile_sex %>
-  </div>
+      <div class="field">
+        <%= form.text_field :last_name, placeholder: "last name", id: :profile_last_name %>
+      </div>
 
-  <div class="field">
-    <%= form.label :DOB %>
-    <%= form.date_select :DOB, order: [:day, :month, :year], id: :profile_DOB %>
-  </div>
+      <div class="field">
+        <%= form.label :DOB, class: 'col-12' %>
+        <%= form.date_select :DOB, order: [:day, :month, :year], use_short_month: true, :start_year => Time.now.year, :end_year => Time.now.year - 105 , id: :profile_DOB, class: 'col-12' %>
+      </div>
 
-  <div class="field">
-    <%= form.label :street %>
-    <%= form.text_field :street, placeholder: "address", id: :profile_street %>
-  </div>
+      <div class="field">
+        <%= form.text_field :street, placeholder: "address", id: :profile_street %>
+      </div>
 
-  <div class="field">
-    <%= form.label :postcode %>
-    <%= form.text_field :postcode, placeholder: "2000", id: :profile_postcode %>
-  </div>
+      <div class="field col-12">
+      <%= form.text_field :postcode, placeholder: "2000", id: :profile_postcode, class: 'col-6' %>
+        <%= form.select :state, ['ACT', 'NSW', 'NT', 'QLD', 'SA', 'TAS', 'VIC', 'WA'], id: :profile_state, class: 'col-6' %>
+      </div>
 
-  <div class="field">
-    <%= form.label :state %>
-    <%= form.select :state, ['ACT', 'NSW', 'NT', 'QLD', 'SA', 'TAS', 'VIC', 'WA'], id: :profile_state %>
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

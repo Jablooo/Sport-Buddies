@@ -1,3 +1,42 @@
 // Place all the styles related to the Profiles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+img {
+  width: 20px;
+}
+
+.icons {
+  margin-top: -10px;
+}
+
+.profile_username {
+  font-size: 1.5em;
+}
+
+.profile_name {
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.profile_bio {
+  margin-bottom: 0;
+}
+
+.profile_box {
+  text-align: center;
+}
+
+.btn {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.buddy_avatar {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
+
+p {
+  color: #c3f73a;
+}

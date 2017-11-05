@@ -1,47 +1,42 @@
-<p id="notice"><%= notice %></p>
+<div class="container profile_box justify-content-center">
+  <div class="row justify-content-center">
+    <div class= "col-12">
+      <%= image_tag @profile.avatar_url, :class => 'buddy_avatar' %>
+    </div>
+    <div class="col-12 icons">
+      <%= link_to image_tag("add_friend.png"), edit_profiles_path, class: "btn" %>
+      <%= link_to image_tag("email.png"), edit_profiles_path, class: "btn" %>
+      <% if @profile.user == current_user %>
+        <%= link_to image_tag("edit_button.png"), edit_profiles_path, class: "btn" %>
+      <% end %>
+    </div>
 
-<p>
-  <%= image_tag @profile.avatar_url, :class => 'profile_avatar' %>
-</p>
+    <div class="col-12">
+      <p class="profile_name"><%= @profile.first_name + " " + @profile.last_name %></p>
+      <p class="profile_bio"><%= @profile.sex + ", "%><%= @profile.DOB %></p>
+      <p class="profile_bio"><%= @profile.postcode + ", " + @profile.state %></p>
+    </div>
 
-<p>
-  <strong>First name:</strong>
-  <%= @profile.first_name %>
-</p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @profile.last_name %>
-</p>
+  </div>
+</div>
 
-<p>
-  <strong>Sex:</strong>
-  <%= @profile.sex %>
-</p>
 
-<p>
-  <strong>Dob:</strong>
-  <%= @profile.DOB %>
-</p>
+<div class="container user_photo_feed">
+    <div class="row justify-content-start">
+      <% @profile.user.items.reverse.each do |item| %>
 
-<p>
-  <strong>Street:</strong>
-  <%= @profile.street %>
-</p>
+      <div class="col-6 col-sm-4">
+          <div class="card items_card">
+            <div class="card-body text_box">
+              <%= link_to (image_tag (item.image_url(:angle=>"exif", :gravity=>"auto", :height=>500, :width=>500, :crop=>"fill")), :class => 'card-img-top feed_grid'), item_path(item.id) %>
+              <p class="card-text"><span class="item_name"><%= item.name %></span></p>
+              <p class="card-text"><span class="item_price">$ <%= item.price %></span></p>
+            </div>
+          </div>
+      </div>
 
-<p>
-  <strong>Postcode:</strong>
-  <%= @profile.postcode %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @profile.state %>
-</p>
-
-<% if @profile.user == current_user %>
-  <%= link_to 'Edit Profile', edit_profiles_path, class: "btn btn-outline-dark" %>
-<% end %>
-
-<br>
+      <% end %>
+    </div>
+</div>
 <%= link_to 'Back', root_path %>
