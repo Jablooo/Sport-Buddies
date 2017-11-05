@@ -31,6 +31,7 @@ $col9 : #0b5351;
 
 * {
  box-sizing: border-box;
+ // border: 1px black solid;
 }
 
 .main_bg {
@@ -42,6 +43,18 @@ $col9 : #0b5351;
   // col2,col8,col6
   background-color: $col2 !important;
 }
+
+.light_bg {
+  // col3,col9,col5
+  background-color: $col3 !important;
+}
+
+// navbar
+.navbar {
+  border-radius: 10px;
+}
+
+// home page
 
 // log in page
 .card_field {
@@ -73,7 +86,6 @@ $col9 : #0b5351;
 }
 
 // profiles
-
 .profile_avatar {
   height: 80px;
   width: 80px;
@@ -81,12 +93,20 @@ $col9 : #0b5351;
   margin-left: 20px;
 }
 
+.file_field {
+  margin-left: -25px;
+  max-width: 60% !important;
+}
+
 .profile_info {
   font-weight: bold;
   margin-left: 20px;
-
 }
 
+.login_text select{
+  // col3,col9,col5
+  color: $col3 !important;
+}
 .profile_row {
   margin-top: 3vh;
   text-align: left;
