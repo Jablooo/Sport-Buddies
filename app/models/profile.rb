@@ -4,7 +4,4 @@ class Profile < ApplicationRecord
 
   include ImageUploader[:avatar]
 
-  def sports_played
-    @profile.inspect
-  end
 end

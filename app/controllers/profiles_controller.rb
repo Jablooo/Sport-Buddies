@@ -32,7 +32,7 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to user_path(current_user.id), notice: 'Profile was successfully created.' }
+        format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
         format.json { render :show, status: :created, location: @profile }
       else
         format.html { render :new }
@@ -61,7 +61,7 @@ class ProfilesController < ApplicationController
         # profile_params[:sport_ids].each do |sport_id|
         #   Skill.create!(profile_id: @profile.user.id, sport_id: sport_id)
         # end
-        format.html { redirect_to profiles_path, notice: 'Profile was successfully updated.' }
+        format.html { redirect_to profile_url, notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @profile }
       rescue
         format.html { render :edit }
@@ -75,7 +75,7 @@ class ProfilesController < ApplicationController
   def destroy
     @profile.destroy
     respond_to do |format|
-      format.html { redirect_to profiles_url, notice: 'Profile was successfully destroyed.' }
+      format.html { redirect_to profile_url, notice: 'Profile was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -116,7 +116,6 @@ class ProfilesController < ApplicationController
   def sport_params
     params.require(:sport).permit(
       :name,
-      :sport_ids
     )
   end
 
