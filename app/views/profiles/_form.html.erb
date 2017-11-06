@@ -1,6 +1,6 @@
 <div class="card mx-auto col-10 secondary_bg">
   <div class="card-body card_field">
-    <%= form_with(model: profile, url:profiles_path, local: true) do |form| %>
+    <%= form_with(model: profile, url:profile_path, local: true) do |form| %>
       <% if profile.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
@@ -47,7 +47,7 @@
       <div class="row form_row">
         <label class="col-12" for="sport[]">Sports</label><br>
           <% sports.each do |sport| %>
-            <p class="sport_played col-5"><%= check_box_tag 'profile[sport_ids][]', sport.id -%>
+            <p class="sport_played col-5"><%= check_box_tag 'profile[sport_id][]', sport.id -%>
               <%= sport.name -%></p>
           <% end %>
         <br>

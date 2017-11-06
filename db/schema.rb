@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171106025045) do
+ActiveRecord::Schema.define(version: 20171106081205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,17 +51,9 @@ ActiveRecord::Schema.define(version: 20171106025045) do
     t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_profiles_on_user_id"
-  end
-
-  create_table "skills", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.bigint "sport_id"
-    t.bigint "profile_id"
-    t.string "level"
-    t.index ["profile_id"], name: "index_skills_on_profile_id"
-    t.index ["sport_id"], name: "index_skills_on_sport_id"
+    t.index ["sport_id"], name: "index_profiles_on_sport_id"
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "sports", force: :cascade do |t|
@@ -90,7 +82,6 @@ ActiveRecord::Schema.define(version: 20171106025045) do
   add_foreign_key "buddies", "users", column: "followed_id"
   add_foreign_key "buddies", "users", column: "follower_id"
   add_foreign_key "items", "users"
+  add_foreign_key "profiles", "sports"
   add_foreign_key "profiles", "users"
-  add_foreign_key "skills", "profiles"
-  add_foreign_key "skills", "sports"
 end

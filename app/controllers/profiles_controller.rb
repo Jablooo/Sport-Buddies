@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_action :set_sports, only: [:new, :edit, :create, :update]
   before_action :authenticate_user! # devise method authenticate user!
 
   # GET /profiles
@@ -11,34 +12,27 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
-    @profiles = Profile.all
     @buddy_list = current_user.buddy_list
   end
 
   # GET /profiles/new
   def new
     @profile = Profile.new
-    @sports = Sport.all
   end
 
   # GET /profiles/1/edit
   def edit
-    @sports = Sport.all
   end
 
   # POST /profiles
   # POST /profiles.json
   def create
-    @sports = Sport.all
     @profile = Profile.new(profile_params)
     @profile.user = current_user
 
-    profile_params[:sport_ids].each do |sport_id|
-      Skill.create!(profile_id: @profile.user.id, sport_id: sport_id)
-    end
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to profiles_path, notice: 'Profile was successfully created.' }
+        format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
         format.json { render :show, status: :created, location: @profile }
       else
         format.html { render :new }
@@ -51,7 +45,7 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /profiles/1.json
   def update
     # puts "profile_params: #{profile_params[:sport_ids]}"
-    @sports = Sport.all
+
     respond_to do |format|
       begin
         if current_user != @profile.user
@@ -64,15 +58,14 @@ class ProfilesController < ApplicationController
 
         @profile.update(profile_params)
         # add skill objects and save to db
-        profile_params[:sport_ids].each do |sport_id|
-          Skill.create!(profile_id: @profile.user.id, sport_id: sport_id)
-        end
-        format.html { redirect_to profiles_path, notice: 'Profile was successfully updated.' }
+        # profile_params[:sport_ids].each do |sport_id|
+        #   Skill.create!(profile_id: @profile.user.id, sport_id: sport_id)
+        # end
+        format.html { redirect_to profile_url, notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @profile }
-      # rescue
-        # format.html { render :edit }
-        # # TODO - where do we catch @skill erro
-        # format.json { render json: @profile.errors, status: :unprocessable_entity }
+      rescue
+        format.html { render :edit }
+        format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -82,7 +75,7 @@ class ProfilesController < ApplicationController
   def destroy
     @profile.destroy
     respond_to do |format|
-      format.html { redirect_to profiles_url, notice: 'Profile was successfully destroyed.' }
+      format.html { redirect_to profile_url, notice: 'Profile was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -93,10 +86,13 @@ class ProfilesController < ApplicationController
     @profile = if params[:id]
                Profile.find_by!(user_id: params[:id])
              else
-               Profile.find_by(user: current_user)
+               Profile.find_by(user_id: current_user.id)
              end
   end
 
+  def set_sports
+    @sports = Sport.all
+  end
   # Never trust parameters from the scary internet, only allow the white list through.
   def profile_params
     params.require(:profile).permit(
@@ -113,24 +109,15 @@ class ProfilesController < ApplicationController
       :latitude,
       :longitude,
       :name,
-      :sport_ids => []
+      :sport_id => []
     )
   end
 
-  def skill_params
-    params.require(:skill).permit(
-      :profile_id,
-      :sport_id,
-      :level
+  def sport_params
+    params.require(:sport).permit(
+      :name,
     )
   end
-
-  # def sport_params
-  #   params.require(:sport).permit(
-  #     :name,
-  #     :sport_ids
-  #   )
-  # end
 
   def performing_follow?
   params.require(:user)[:toggle_follow].present?
