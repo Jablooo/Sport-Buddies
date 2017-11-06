@@ -9,7 +9,7 @@
 Sport.destroy_all
 
 Sport.create!([
-  {name: "tennis"},
+  {name: "Tennis"},
   {name:'Football'},
   {name:'Swimming'},
   {name:'Running'},
