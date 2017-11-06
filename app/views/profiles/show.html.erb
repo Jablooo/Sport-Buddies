@@ -20,32 +20,22 @@
 
     </div>
 
+
+
     <div class="col-12">
       <p class="profile_name"><%= @profile.first_name + " " + @profile.last_name %></p>
       <p class="profile_bio"><%= @profile.sex + ", "%><%= @profile.DOB %></p>
       <p class="profile_bio"><%= @profile.postcode + ", " + @profile.state %></p>
+
+      <br>
+      <p class="profile_bio"><%= @profile.sports_played %></p>
     </div>
 
 
   </div>
 </div>
 
+<!-- currently just showing all users times the number of people following -->
+<%#= render @buddy_list %>
 
-<div class="container user_photo_feed">
-    <div class="row justify-content-start">
-      <% @profile.user.items.reverse.each do |item| %>
-
-      <div class="col-6 col-sm-4">
-          <div class="card items_card">
-            <div class="card-body text_box">
-              <%= link_to (image_tag (item.image_url(:angle=>"exif", :gravity=>"auto", :height=>500, :width=>500, :crop=>"fill")), :class => 'card-img-top feed_grid'), item_path(item.id) %>
-              <p class="card-text"><span class="item_name"><%= item.name %></span></p>
-              <p class="card-text"><span class="item_price">$ <%= item.price %></span></p>
-            </div>
-          </div>
-      </div>
-
-      <% end %>
-    </div>
-</div>
 <%= link_to 'Back', root_path %>

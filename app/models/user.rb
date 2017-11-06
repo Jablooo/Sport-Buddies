@@ -28,7 +28,7 @@ class User < ApplicationRecord
     end
   end
 
-  def photo_feed
-    Photo.where(user: self.following).order(created_at: :desc)
+  def buddy_list
+    Profile.where(user: self.following).order(created_at: :desc)
   end
 end
