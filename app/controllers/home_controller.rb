@@ -18,7 +18,7 @@ class HomeController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def profile_params
-    params.require(:item).permit(
+    params.require(:profile).permit(
       :avatar,
       :first_name,
       :last_name,

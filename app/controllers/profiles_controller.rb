@@ -11,6 +11,8 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+    @profiles = Profile.all
+    @buddy_list = current_user.buddy_list
   end
 
   # GET /profiles/new
@@ -49,7 +51,7 @@ class ProfilesController < ApplicationController
         # the next two lines are all about the redirecting or the 'resheshing' of a page so that you can see the result of follow and unfollow without having to refresh.
         format.html { redirect_to @profile.user }
         format.json { render :show, status: :ok, location: @profile }
-        
+
       elsif @profile.update(profile_params)
         format.html { redirect_to profiles_path, notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @profile }
@@ -95,6 +97,14 @@ class ProfilesController < ApplicationController
       :country,
       :latitude,
       :longitude
+    )
+  end
+
+  def skill_params
+    params.require(:skill).permit(
+      :profile_id,
+      :sport_id,
+      :level
     )
   end
 
