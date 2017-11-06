@@ -13,6 +13,7 @@ class CreateProfiles < ActiveRecord::Migration[5.1]
       t.string :country
       t.float :latitude
       t.float :longitude
+      t.string :sport
 
       t.timestamps
     end
