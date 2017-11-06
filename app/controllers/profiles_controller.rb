@@ -23,14 +23,19 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
+    @sports = Sport.all
   end
 
   # POST /profiles
   # POST /profiles.json
   def create
+    @sports = Sport.all
     @profile = Profile.new(profile_params)
     @profile.user = current_user
 
+    profile_params[:sport_ids].each do |sport_id|
+      Skill.create!(profile_id: @profile.user.id, sport_id: sport_id)
+    end
     respond_to do |format|
       if @profile.save
         format.html { redirect_to profiles_path, notice: 'Profile was successfully created.' }
@@ -45,19 +50,29 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /profiles/1
   # PATCH/PUT /profiles/1.json
   def update
+    # puts "profile_params: #{profile_params[:sport_ids]}"
+    @sports = Sport.all
     respond_to do |format|
-      if performing_follow?
-        @profile.user.toggle_followed_by(current_user)
-        # the next two lines are all about the redirecting or the 'resheshing' of a page so that you can see the result of follow and unfollow without having to refresh.
-        format.html { redirect_to @profile.user }
-        format.json { render :show, status: :ok, location: @profile }
+      begin
+        if current_user != @profile.user
+          performing_follow?
+          @profile.user.toggle_followed_by(current_user)
+          # the next two lines are all about the redirecting or the 'resheshing' of a page so that you can see the result of follow and unfollow without having to refresh.
+          format.html { redirect_to @profile.user }
+          format.json { render :show, status: :ok, location: @profile }
+        end
 
-      elsif @profile.update(profile_params)
+        @profile.update(profile_params)
+        # add skill objects and save to db
+        profile_params[:sport_ids].each do |sport_id|
+          Skill.create!(profile_id: @profile.user.id, sport_id: sport_id)
+        end
         format.html { redirect_to profiles_path, notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @profile }
-      else
-        format.html { render :edit }
-        format.json { render json: @profile.errors, status: :unprocessable_entity }
+      # rescue
+        # format.html { render :edit }
+        # # TODO - where do we catch @skill erro
+        # format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -96,7 +111,9 @@ class ProfilesController < ApplicationController
       :state,
       :country,
       :latitude,
-      :longitude
+      :longitude,
+      :name,
+      :sport_ids => []
     )
   end
 
@@ -108,11 +125,12 @@ class ProfilesController < ApplicationController
     )
   end
 
-  def sport_params
-    params.require(:sport).permit(
-      :name,
-    )
-  end
+  # def sport_params
+  #   params.require(:sport).permit(
+  #     :name,
+  #     :sport_ids
+  #   )
+  # end
 
   def performing_follow?
   params.require(:user)[:toggle_follow].present?
