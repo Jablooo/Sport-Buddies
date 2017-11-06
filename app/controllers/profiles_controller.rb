@@ -30,6 +30,8 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(profile_params)
     @profile.user = current_user
 
+    puts "----@profile #{@profile.inspect}"
+
     respond_to do |format|
       if @profile.save
         format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
@@ -86,7 +88,7 @@ class ProfilesController < ApplicationController
     @profile = if params[:id]
                Profile.find_by!(user_id: params[:id])
              else
-               Profile.find_by(user_id: current_user.id)
+               Profile.find_by(user: current_user)
              end
   end
 
@@ -109,7 +111,7 @@ class ProfilesController < ApplicationController
       :latitude,
       :longitude,
       :name,
-      :sport_id => []
+      :sport => []
     )
   end
 

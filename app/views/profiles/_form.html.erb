@@ -47,7 +47,7 @@
       <div class="row form_row">
         <label class="col-12" for="sport[]">Sports</label><br>
           <% sports.each do |sport| %>
-            <p class="sport_played col-5"><%= check_box_tag 'profile[sport_id][]', sport.id -%>
+            <p class="sport_played col-5"><%= check_box_tag 'profile[sport][]', sport.name -%>
               <%= sport.name -%></p>
           <% end %>
         <br>
