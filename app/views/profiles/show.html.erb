@@ -25,8 +25,7 @@
       <p class="profile_bio"><%= @profile.sex + ", "%><%= @profile.DOB %></p>
       <p class="profile_bio"><%= @profile.postcode + ", " + @profile.state %></p>
 
-      <br>
-      <p class="profile_bio"><%= @profile.sport %></p>
+      <p class="profile_bio"><%= @profile.sport.gsub(/[""]/, '') %></p>
     </div>
 
 
