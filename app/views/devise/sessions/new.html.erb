@@ -1,0 +1,32 @@
+<div class="card mx-auto col-10 col-sm-6 devise-card secondary_bg">
+  <div class="card-body card_field">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <%= f.email_field :email, autofocus: true, placeholder: 'Email' %>
+      </div>
+
+      <div class="field">
+        <%= f.password_field :password, autocomplete: "off", placeholder: 'Password' %>
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+        <div class="field login_text">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end -%>
+
+      <div class="actions login_text">
+        <%= f.submit "Log in" %>
+      </div>
+    <% end %>
+
+    <div class="footer_links login_text">
+      <%= render "devise/shared/links" %>
+    </div>
+    <br>
+    <div class="login_text">
+      <%= link_to 'Back', root_path %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,233 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap";
+
+$col1 : #2b2d42;
+$col2 : #8d99ae;
+$col3 : #c3f73a;
+// f8f32b
+
+$col4 : #020202;
+$col5 : #c7f97d;
+$col6 : #001c55;
+
+$col7 : #041b15;
+$col8 : #c3f73a;
+$col9 : #0b5351;
+
+* {
+ box-sizing: border-box;
+ // border: 1px black solid;
+}
+
+.main_bg {
+  // col1,col7,col4
+  background-color: $col1;
+}
+
+body {
+  color: $col1 !important;
+}
+
+.secondary_bg {
+  // col2,col8,col6
+  background-color: $col2 !important;
+}
+
+.light_bg {
+  // col3,col9,col5
+  background-color: $col3 !important;
+}
+
+// navbar
+.navbar {
+  border-radius: 10px;
+}
+
+// home page
+.home_feed {
+  background-color: $col2;
+  border-left: 1px solid $col1;
+  border-right: 1px solid $col1;
+  padding-bottom: 20px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  margin-bottom: 20px;
+}
+.heading {
+  text-align: center;
+  margin-top: -20px;
+  margin-bottom: 40px;
+  color: $col2;
+}
+
+.tabs {
+  text-align: center;
+  color: $col1;
+}
+
+.buddies {
+  font-size: 18px;
+  padding: 5px 0;
+  margin-bottom: 0;
+  background-color: $col2;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border: 1px solid $col1;
+  border-bottom: 0;
+}
+
+.equipment {
+  font-size: 18px;
+  padding: 5px 0;
+  margin-bottom: 0;
+  background-color: $col3;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border: 1px solid $col1;
+}
+
+// log in page
+.card_field {
+  text-align: center;
+  color: black;
+}
+
+::-webkit-input-placeholder {
+   text-align: center;
+}
+
+.devise-card {
+  margin-top: 150px;
+}
+
+.login_text a {
+  // col3,col9,col5
+  color: $col3 !important;
+}
+
+.login_text {
+  // col3,col9,col5
+  color: $col3 !important;
+}
+
+.login_text input{
+  // col3,col9,col5
+  color: $col3 !important;
+}
+
+// profiles
+.profile_avatar {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  margin-left: 20px;
+}
+
+.profile_info {
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.profile_info {
+  color: $col1;
+}
+
+.login_text select{
+  // col3,col9,col5
+  color: $col3 !important;
+}
+.profile_row {
+  margin-top: 3vh;
+  text-align: left;
+  align-items: center;
+}
+// ________________________
+
+.buffer {
+  margin-top: 200px;
+}
+
+
+// items
+.copy_card {
+  padding-top: 10%;
+  border: none;
+}
+
+.card_text {
+  margin-top: 10px;
+}
+
+.btn {
+  margin-top: 10px;
+}
+
+.card_avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+}
+
+.solo_card {
+  padding: 1% 1% 1%;
+}
+
+.seller_row {
+  margin: 10px;
+}
+
+.btn-outline-dark {
+  margin-bottom: 20px;
+}
+
+.text_box {
+  text-align: center;
+  font-weight: bold;
+}
+
+.item_img {
+  border: 10 black solid;
+}
+
+.row_item {
+  margin-top: 20px;
+}
+// ________________________
+
+.image_desc {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.item_img {
+  margin-left: 15px;
+  padding: 0;
+}
+
+.card-img-top {
+  border-radius: 5px;
+}
+
+.text_box p {
+  font-size: 12px;
+  width: 100%;
+}
+
+.item_container {
+  margin-top: 10px;
+}

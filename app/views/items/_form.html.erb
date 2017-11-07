@@ -1,0 +1,53 @@
+<div class="card mx-auto col-10 secondary_bg">
+  <div class="card-body card_field">
+    <%= form_with(model: item, local: true) do |form| %>
+      <% if item.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+          <ul>
+          <% item.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <br>
+      <div class="field col-12">
+        <%= form.label "Type:" %>
+        <%= form.select :category, ['Shoe', 'Racquet', 'Ball', 'Tennis', 'Football', 'Swimming', 'Running', 'Ping Pong', 'Squash', 'Golf', 'Gym', 'Hockey', 'Netball', 'Basketball', 'Volleyball', 'Baseball', 'Rugby', 'AFL', 'Snowboard', 'Surfing', 'Archery'], id: :item_category %>
+      </div>
+
+      <div class="field">
+        <%= form.label :photo, class: 'photo col-5' %>
+        <%= form.file_field :photo, class: 'col-7 file_field', id: :item_photo_data %>
+      </div>
+
+      <div class="field">
+        <%= form.text_field :name, placeholder: "Item Name", id: :item_name %>
+      </div>
+
+      <div class="field">
+        <%= form.text_field :description, placeholder: "Description", id: :item_description %>
+      </div>
+
+      <div class="field">
+        <%= form.text_field :selling_price, placeholder: "Price", id: :item_selling_price %>
+      </div>
+
+      <!-- <div class="field">
+        <%= form.label :renting_price %>
+        <%= form.text_field :renting_price, placeholder: "first name", id: :item_renting_price %>
+      </div> -->
+
+      <div class="field">
+        <%= form.number_field :quantity, placeholder: "Quantity", id: :item_quantity %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+    <% end %>
+  </div>
+</div>

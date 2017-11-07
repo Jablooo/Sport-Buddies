@@ -5,6 +5,21 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# bootstrap for css styling
+gem 'bootstrap', '~> 4.0.0.beta2'
+
+# devise for user login
+gem 'devise'
+
+# figaro for hidden environment
+gem 'figaro'
+
+# shrine for image uploading
+gem "shrine"
+gem 'shrine-cloudinary'
+
+# stripe payment apps
+gem 'stripe'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'

@@ -1,0 +1,31 @@
+<div class="card mx-auto col-10 devise-card secondary_bg">
+  <div class="card-body card_field">
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="field">
+        <%= f.email_field :email, placeholder: "Email address", class: "text_fields" %>
+      </div>
+
+      <div class="field">
+        <% if @minimum_password_length %>
+        <em class= "login_text">(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "text_fields" %>
+      </div>
+
+      <div class="field">
+        <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm password", class: "text_fields" %>
+      </div>
+
+      <div class="actions login_text">
+        <%= f.submit "Sign up" %>
+      </div>
+    <% end %>
+    <div class="login_text">
+      <%= link_to 'Back', root_path %>
+    </div>
+
+  </div>
+</div> <!-- card container -->
