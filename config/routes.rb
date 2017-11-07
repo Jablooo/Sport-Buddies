@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  resources :items
+  resources :items do
+    resources :charges, only: [:new, :create]
+  end
 
   devise_for :users, :controllers => { registrations: 'registrations' }
 
