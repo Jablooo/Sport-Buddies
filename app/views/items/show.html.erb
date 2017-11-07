@@ -12,6 +12,7 @@
     <div class="card copy_card mx-auto col-12 col-sm-5">
         <div class="card-body">
           <div class="text_box">
+            <p class="card-text"><span class="item_name"><%= @item.category %></span></p>
             <p class="card-text"><span class="item_name"><%= @item.name %></span></p>
             <p class="card-text"><span class="item_name"><%=number_to_currency(@item.selling_price, unit: "$") %></span></p>
             <p class="card-text"><span class="item_desc"><%= @item.description %></span></p>

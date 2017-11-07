@@ -39,6 +39,10 @@ $col9 : #0b5351;
   background-color: $col1;
 }
 
+body {
+  color: $col1 !important;
+}
+
 .secondary_bg {
   // col2,col8,col6
   background-color: $col2 !important;
@@ -201,6 +205,29 @@ $col9 : #0b5351;
 }
 
 .row_item {
-  margin: 2px;
+  margin-top: 20px;
 }
 // ________________________
+
+.image_desc {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.item_img {
+  margin-left: 15px;
+  padding: 0;
+}
+
+.card-img-top {
+  border-radius: 5px;
+}
+
+.text_box p {
+  font-size: 12px;
+  width: 100%;
+}
+
+.item_container {
+  margin-top: 10px;
+}
