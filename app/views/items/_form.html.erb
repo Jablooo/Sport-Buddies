@@ -1,4 +1,4 @@
-<div class="card mx-auto col-10">
+<div class="card mx-auto col-10 secondary_bg">
   <div class="card-body card_field">
     <%= form_with(model: item, local: true) do |form| %>
       <% if item.errors.any? %>
@@ -13,39 +13,36 @@
         </div>
       <% end %>
 
-      <div class="field">
-        <%= form.label :category %>
-        <%= form.number_field :category, id: :item_category %>
+      <br>
+      <div class="field col-12">
+        <%= form.label "Type:" %>
+        <%= form.select :category, ['Shoe', 'Racquet', 'Ball', 'Tennis', 'Football', 'Swimming', 'Running', 'Ping Pong', 'Squash', 'Golf', 'Gym', 'Hockey', 'Netball', 'Basketball', 'Volleyball', 'Baseball', 'Rugby', 'AFL', 'Snowboard', 'Surfing', 'Archery'], id: :item_category %>
       </div>
 
       <div class="field">
-        <%= form.label :photo %>
-        <%= form.file_field :photo, id: :item_photo_data %>
+        <%= form.label :photo, class: 'photo col-5' %>
+        <%= form.file_field :photo, class: 'col-7 file_field', id: :item_photo_data %>
       </div>
 
       <div class="field">
-        <%= form.label :name %>
-        <%= form.text_field :name, id: :item_name %>
+        <%= form.text_field :name, placeholder: "Item Name", id: :item_name %>
       </div>
 
       <div class="field">
-        <%= form.label :description %>
-        <%= form.text_field :description, id: :item_description %>
+        <%= form.text_field :description, placeholder: "Description", id: :item_description %>
       </div>
 
       <div class="field">
-        <%= form.label :selling_price %>
-        <%= form.text_field :selling_price, id: :item_selling_price %>
+        <%= form.text_field :selling_price, placeholder: "Price", id: :item_selling_price %>
       </div>
 
-      <div class="field">
+      <!-- <div class="field">
         <%= form.label :renting_price %>
-        <%= form.text_field :renting_price, id: :item_renting_price %>
-      </div>
+        <%= form.text_field :renting_price, placeholder: "first name", id: :item_renting_price %>
+      </div> -->
 
       <div class="field">
-        <%= form.label :quantity %>
-        <%= form.number_field :quantity, id: :item_quantity %>
+        <%= form.number_field :quantity, placeholder: "Quantity", id: :item_quantity %>
       </div>
 
       <div class="actions">

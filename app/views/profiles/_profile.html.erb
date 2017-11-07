@@ -11,7 +11,7 @@
 
     <div class="col-8">
       <p class="profile_info"><%= profile.first_name + " " + profile.last_name + ", " + profile.sex + ", " + profile.postcode %></p>
-      <p class="profile_info"><%= "tennis, football" %></p>
+      <p class="profile_info"><%= profile.sport.gsub(/[""]/, '') %></p>
     </div>
   </div>
 <% end %>
