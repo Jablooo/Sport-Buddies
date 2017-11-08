@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :charges, only: [:new, :create]
+  # resources :charges, only: [:new, :create]
 
   resources :users, only: [:show, :update], controller: :profiles
   resource :profile
