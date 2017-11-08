@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:charges, :show, :edit, :update, :destroy]
   before_action :set_sports, only: [:new, :edit, :create, :update]
   before_action :sports_list_array, only: [:new, :edit, :create, :update]
   before_action :authenticate_user!
@@ -13,6 +13,7 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
+    # @method = Stripe::Charge(current_user.stripe_id).method
   end
 
   # GET /items/new
@@ -22,8 +23,7 @@ class ItemsController < ApplicationController
   end
 
   # GET /items/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /items
   # POST /items.json
@@ -54,6 +54,38 @@ class ItemsController < ApplicationController
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def charges
+    # Amount in cents
+    @amount = @item.selling_price*100
+
+    if current_user.stripe_id == nil
+
+      customer = Stripe::Customer.create(
+        :email => params[:stripeEmail],
+        :source  => params[:stripeToken]
+      )
+
+      charge = Stripe::Charge.create(
+        :customer    => customer.id,
+        :amount      => @amount.to_i,
+        :description => 'Rails Stripe customer',
+        :currency    => 'aud'
+      )
+      current_user.stripe_id = customer.id
+      current_user.save
+    else
+      charge = Stripe::Charge.create(
+        :customer    => current_user.stripe_id,
+        :amount      => @amount.to_i,
+        :description => 'Rails Stripe customer',
+        :currency    => 'aud'
+      )
+    end
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to new_charge_path
   end
 
   # DELETE /items/1
