@@ -60,7 +60,7 @@ class ItemsController < ApplicationController
     # Amount in cents
     @amount = @item.selling_price*100
 
-    # if current_user.stripe_id == nil
+    if current_user.stripe_id == nil
 
       customer = Stripe::Customer.create(
         :email => params[:stripeEmail],
@@ -75,17 +75,17 @@ class ItemsController < ApplicationController
       )
       current_user.stripe_id = customer.id
       current_user.save
-    # else
-    #   charge = Stripe::Charge.create(
-    #     :customer    => current_user.stripe_id,
-    #     :amount      => @amount.to_i,
-    #     :description => 'Rails Stripe customer',
-    #     :currency    => 'aud'
-    #   )
-    # end
-  # rescue Stripe::CardError => e
-  #   flash[:error] = e.message
-  #   redirect_to new_charge_path
+    else
+      charge = Stripe::Charge.create(
+        :customer    => current_user.stripe_id,
+        :amount      => @amount.to_i,
+        :description => 'Rails Stripe customer',
+        :currency    => 'aud'
+      )
+    end
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to new_charge_path
   end
 
   # DELETE /items/1
