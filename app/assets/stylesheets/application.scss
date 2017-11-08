@@ -231,3 +231,33 @@ body {
 .item_container {
   margin-top: 10px;
 }
+
+// messaging
+
+ul {
+  padding-left: 0px;
+  list-style: none;
+}
+
+.messages-list {
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.message-sent {
+  position: relative;
+  background-color: #D9EDF7;
+  border-color: #BCE8F1;
+  margin: 5px 20px;
+  padding: 10px;
+  float: right;
+}
+
+.message-received {
+  background-color: #F1F0F0;
+  border-color: #EEEEEE;
+  margin: 5px 20px;
+  padding: 10px;
+  float: left;
+}
