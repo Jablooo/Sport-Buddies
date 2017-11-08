@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'home#index'
+  get '/messages', to: 'home#messages'
 
   devise_for :users, :controllers => { registrations: 'registrations' }
 

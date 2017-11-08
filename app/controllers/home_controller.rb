@@ -3,6 +3,10 @@ class HomeController < ApplicationController
   def index
     @profiles = Profile.all
     @items = Item.all
+  end
+
+  def messages
+    @conversations = Conversation.all
 
     session[:conversations] ||= []
 
@@ -20,6 +24,10 @@ class HomeController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def conversation_item
+    @conversation = Conversation.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -45,4 +53,22 @@ class HomeController < ApplicationController
       :category
     )
   end
+  def conversation_params
+    params.require(:conversation).permit(
+      :recipient_id,
+      :sender_id
+    )
+  end
+
+  # def item_params
+  #   params.require(:item).permit(
+  #     :photo,
+  #     :name,
+  #     :description,
+  #     :selling_price,
+  #     :quantity,
+  #     :user_id,
+  #     :category
+  #   )
+  # end
 end
