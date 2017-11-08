@@ -56,37 +56,37 @@ class ItemsController < ApplicationController
     end
   end
 
-  def charges
-    # Amount in cents
-    @amount = @item.selling_price*100
-
-    if current_user.stripe_id == nil
-
-      customer = Stripe::Customer.create(
-        :email => params[:stripeEmail],
-        :source  => params[:stripeToken]
-      )
-
-      charge = Stripe::Charge.create(
-        :customer    => customer.id,
-        :amount      => @amount.to_i,
-        :description => 'Rails Stripe customer',
-        :currency    => 'aud'
-      )
-      current_user.stripe_id = customer.id
-      current_user.save
-    else
-      charge = Stripe::Charge.create(
-        :customer    => current_user.stripe_id,
-        :amount      => @amount.to_i,
-        :description => 'Rails Stripe customer',
-        :currency    => 'aud'
-      )
-    end
-  rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to new_charge_path
-  end
+  # def charges
+  #   # Amount in cents
+  #   @amount = @item.selling_price*100
+  #
+  #   if current_user.stripe_id == nil
+  #
+  #     customer = Stripe::Customer.create(
+  #       :email => params[:stripeEmail],
+  #       :source  => params[:stripeToken]
+  #     )
+  #
+  #     charge = Stripe::Charge.create(
+  #       :customer    => customer.id,
+  #       :amount      => @amount.to_i,
+  #       :description => 'Rails Stripe customer',
+  #       :currency    => 'aud'
+  #     )
+  #     current_user.stripe_id = customer.id
+  #     current_user.save
+  #   else
+  #     charge = Stripe::Charge.create(
+  #       :customer    => current_user.stripe_id,
+  #       :amount      => @amount.to_i,
+  #       :description => 'Rails Stripe customer',
+  #       :currency    => 'aud'
+  #     )
+  #   end
+  # rescue Stripe::CardError => e
+  #   flash[:error] = e.message
+  #   redirect_to new_charge_path
+  # end
 
   # DELETE /items/1
   # DELETE /items/1.json
