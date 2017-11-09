@@ -19,7 +19,7 @@
         </div>
         <br>
       </div>
-      <% if @item.user =! current_user %>
+      <% if @item.user != current_user %>
         <div class="mx-auto">
           <%= form_tag charges_item_path(@item.id) do %>
             <article>
@@ -34,6 +34,7 @@
                     data-description="payment"
                     data-amount=<%= @item.selling_price*100 %>
                     data-locale="auto"></script>
+
           <% end %>
         </div>
       <% end %>

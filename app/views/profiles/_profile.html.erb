@@ -1,5 +1,10 @@
 <!-- Profile thumbnail for general use  -->
-
+<div class="search_box mx-auto">
+  <%= form_tag(root_path, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :searchp, params[:searchp], placeholder: "Search Buddies" %>
+      <%= submit_tag "Search", :name => nil %>
+  <% end %>
+</div>
 <% @profiles.reverse.each do |profile| %>
   <div class="row profile_row col-12">
     <div class= "col-4">

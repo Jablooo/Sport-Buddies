@@ -8,6 +8,11 @@ class HomeController < ApplicationController
             else
               Item.all.order("created_at DESC")
             end
+    @profile = if params[:searchp]
+                Profile.search(params[:searchp]).order("created_at DESC")
+              else
+                Profile.all.order("created_at DESC")
+              end
   end
 
   def messages
