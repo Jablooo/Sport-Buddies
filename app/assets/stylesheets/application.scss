@@ -210,7 +210,6 @@ body {
 // ________________________
 
 .image_desc {
-  margin-bottom: 10px;
   width: 100%;
 }
 
@@ -281,6 +280,10 @@ h3 {
   color: $col1 !important;
 }
 
-a {
-  color: $col1 !important;
+.nav-link:visited {
+  background-color: darken($col3, 25%) !important;
+}
+
+.nav-link:hover {
+  background-color: darken($col3, 25%) !important;
 }

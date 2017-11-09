@@ -24,3 +24,41 @@
 .text-items {
   color: white;
 }
+
+.item_container {
+  border-radius: 10px;
+}
+
+.item_img a {
+  font-size: 10px;
+}
+
+h2 {
+  text-align: center;
+  color: #8d99ae !important;
+}
+
+.image_desc {
+  padding-top: 15px;
+  margin-bottom: -10px;
+}
+
+.card-text-first {
+  margin-top: 15px;
+}
+
+.new_item {
+  font-size: 12px;
+  justify-content: center;
+  font-weight: bold;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.new_item a {
+  color: #c3f73a !important;
+}
+
+.show_edit_destroy a {
+  color: #2b2d42 !important;
+}
