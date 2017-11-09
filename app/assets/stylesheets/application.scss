@@ -39,6 +39,10 @@ $col9 : #0b5351;
   background-color: $col1;
 }
 
+.home_buffer {
+  margin-bottom: 10px
+}
+
 body {
   color: $col1 !important;
 }
@@ -99,6 +103,19 @@ body {
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   border: 1px solid $col1;
+}
+
+// search_box
+.search_box {
+  text-align: center;
+  height: 50px;
+  padding-top: 15px;
+  border-radius: 8px;
+}
+
+.search_box input {
+  border-radius: 10px;
+  border: none;
 }
 
 // log in page

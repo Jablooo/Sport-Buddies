@@ -1,27 +1,26 @@
 <!-- item thumbnail for general use  -->
-
-<div class="container item_container secondary_bg">
-  <div class="row new_item">
-    <%= link_to 'New Item', new_item_path %>
-    <br>
-  </div>
-    <% @items.reverse.each do |item| %>
-      <div class="row image_desc">
-        <div class="item_img col-5">
-          <%= link_to (image_tag (item.photo_url(:angle=>"exif", :gravity=>"auto", :height=>500, :width=>500, :crop=>"fill")), :class => 'card-img-top feed_grid'), item_path(item.id) %>
-          <% if item.user == current_user %>
-            <p class="show_edit_destroy"><%= link_to 'Show', item %>
-            <%= link_to 'Edit', edit_item_path(item) %>
-            <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-          <% end %>
-        </div>
-
-        <div class="text_box col-6">
-          <p class="card-text card-text-first"><span class="item_name"><%= item.category %></span></p>
-          <p class="card-text"><%= item.name + ', ' + item.description %></span></p>
-          <p class="card-text"><span class="item_price">$ <%= item.selling_price %></span></p>
-        </div>
-      </div>
-    <% end %>
-
+<div class="search_box mx-auto">
+  <%= form_tag(root_path, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search Equipment" %>
+      <%= submit_tag "Search", :name => nil %>
+  <% end %>
 </div>
+
+<% @items.reverse.each do |item| %>
+  <div class="row image_desc">
+    <div class="item_img col-5">
+      <%= link_to (image_tag (item.photo_url(:angle=>"exif", :gravity=>"auto", :height=>500, :width=>500, :crop=>"fill")), :class => 'card-img-top feed_grid'), item_path(item.id) %>
+      <% if item.user == current_user %>
+        <p class="show_edit_destroy"><%= link_to 'Show', item %>
+        <%= link_to 'Edit', edit_item_path(item) %>
+        <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+      <% end %>
+    </div>
+
+    <div class="text_box col-6">
+      <p class="card-text card-text-first"><span class="item_name"><%= item.category %></span></p>
+      <p class="card-text"><%= item.name + ', ' + item.description %></span></p>
+      <p class="card-text"><span class="item_price">$ <%= item.selling_price %></span></p>
+    </div>
+  </div>
+<% end %>

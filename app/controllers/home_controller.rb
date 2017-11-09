@@ -3,6 +3,16 @@ class HomeController < ApplicationController
   def index
     @profiles = Profile.all
     @items = Item.all
+    @item = if params[:search]
+              Item.search(params[:search]).order("created_at DESC")
+            else
+              Item.all.order("created_at DESC")
+            end
+    @profile = if params[:searchp]
+                Profile.search(params[:searchp]).order("created_at DESC")
+              else
+                Profile.all.order("created_at DESC")
+              end
   end
 
   def messages
@@ -60,15 +70,4 @@ class HomeController < ApplicationController
     )
   end
 
-  # def item_params
-  #   params.require(:item).permit(
-  #     :photo,
-  #     :name,
-  #     :description,
-  #     :selling_price,
-  #     :quantity,
-  #     :user_id,
-  #     :category
-  #   )
-  # end
 end

@@ -1,4 +1,17 @@
 <h2> Equipment </h2>
 <br>
 
-<%= render 'items'%>
+
+<div class="container item_container secondary_bg">
+  <div class="row new_item">
+    <%= link_to 'New Item', new_item_path %>
+    <br>
+  </div>
+
+  <%= render 'items'%>
+  <div class="row new_item">
+    <%= link_to 'Back', root_path %>
+    <br>
+  </div>
+
+</div>
