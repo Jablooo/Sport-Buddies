@@ -66,3 +66,4 @@ eg I have a surf board in my garage or an old tennis racquet that someone could 
 ## Future Upgrades
 1. Addition of Coaches functionality
 2. Addition of geocoder for people near by to automatically be found
+3. Addition of skill level to sport beginner, intermediate, pro
