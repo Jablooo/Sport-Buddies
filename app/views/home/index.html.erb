@@ -7,13 +7,11 @@
 <div class="container home_buffer">
   <div class="row tabs">
     <h4 class="buddies col-6">Buddies</h4>
-    <h4 class="equipment col-6">Equipment</h4>
+    <h4 class="equipment col-6"><%= link_to 'Equipment', items_path %> </h4>
   </div>
 
   <div class="row home_feed">
-    <%= render 'items/items' %>
     <%= render 'profiles/profile' %>
-
   </div>
   <br>
 </div>

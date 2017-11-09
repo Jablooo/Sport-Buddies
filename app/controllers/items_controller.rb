@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:charges, :show, :edit, :update, :destroy]
   before_action :set_sports, only: [:new, :edit, :create, :update]
   before_action :sports_list_array, only: [:new, :edit, :create, :update]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:show, :new, :edit, :create, :update, :charges, :destroy]
 
   # GET /items
   # GET /items.json
