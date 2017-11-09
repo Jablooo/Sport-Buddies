@@ -105,6 +105,19 @@ body {
   border: 1px solid $col1;
 }
 
+// search_box
+.search_box {
+  text-align: center;
+  height: 50px;
+  padding-top: 15px;
+  border-radius: 8px;
+}
+
+.search_box input {
+  border-radius: 10px;
+  border: none;
+}
+
 // log in page
 .card_field {
   text-align: center;
