@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_one :profile
   has_many :items
+  has_many :messages
+  has_many :conversations, foreign_key: :sender_id
 
   # The people who follow us
   has_and_belongs_to_many :followers, class_name: 'User', join_table: :buddies, foreign_key: :followed_id, association_foreign_key: :follower_id
